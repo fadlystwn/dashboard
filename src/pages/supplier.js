@@ -1,27 +1,27 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Col, Row, Pagination, Form, Button } from 'react-bootstrap'
 import SupplierTable from '../components/supplier-table'
 import SupplierModal from '../components/supplier-modal'
 import AddSupplier from '../components/suppliers/add-supplier'
-import {supplier, addSupplier, editSupplier} from '../api/supplier'
+import { supplier, addSupplier, editSupplier } from '../api/supplier'
 
 const Supplier = () => {
   const [show, setShow] = useState(false)
   const [suppliers, setSuppliers] = useState([])
 
   useEffect(() => {
-    supplier().then( res => {
-      setSuppliers(res.data)
-      
-    }).catch( err => console.log(err))
+    supplier()
+      .then((res) => {
+        setSuppliers(res.data)
+      })
+      .catch((err) => console.log(err))
   }, [])
-
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
-  
-  const page = suppliers && suppliers.meta;
-  
+
+  const page = suppliers && suppliers.meta
+
   console.log(page)
 
   return (
@@ -36,12 +36,11 @@ const Supplier = () => {
       </Row>
       <Row>
         <Col md={12}>
-          
           <SupplierModal show={show} handleClose={handleClose}>
             <AddSupplier />
           </SupplierModal>
 
-          <SupplierTable suppliers={suppliers}/>
+          <SupplierTable suppliers={suppliers} />
         </Col>
       </Row>
 
@@ -50,13 +49,14 @@ const Supplier = () => {
           <Pagination size="sm">
             <Pagination.Item>{'<<'}</Pagination.Item>
             <Pagination.Item>{'<'}</Pagination.Item>
-            {
-              page && page.links.map( item => {
+            {page &&
+              page.links.map((item) => {
                 return (
-                  <Pagination.Item active={item.active}>{item.label}</Pagination.Item>
+                  <Pagination.Item active={item.active}>
+                    {item.label}
+                  </Pagination.Item>
                 )
-              })
-            }
+              })}
             <Pagination.Item>{'>'}</Pagination.Item>
             <Pagination.Item>{'>>'}</Pagination.Item>
           </Pagination>
@@ -71,9 +71,11 @@ const Supplier = () => {
           >
             <option>{15}</option>
           </Form.Control>
-          {
-            page &&  <span>Showing {page.from} - {page.to} of {page.total}</span>
-          }
+          {page && (
+            <span>
+              Showing {page.from} - {page.to} of {page.total}
+            </span>
+          )}
         </Col>
       </Row>
     </Container>

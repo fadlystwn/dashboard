@@ -12,24 +12,24 @@ function App() {
   return (
     <ProvideAuth>
       <Router>
-      <Switch>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-        <Route exact path="/profile">
-          <Profile />
-        </Route>
-        <PrivateRoute exact path="/supplier">
-          <Supplier />
-        </PrivateRoute>
-        <PrivateRoute exact path="/">
-          <Dashboard />
-        </PrivateRoute>
-        <Route path="*">
-          <NotFound />
-        </Route>
-      </Switch>
-    </Router>
+        <Switch>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/profile">
+            <Profile />
+          </Route>
+          <PrivateRoute exact path="/supplier">
+            <Supplier />
+          </PrivateRoute>
+          <Route exact path="/">
+            <Dashboard />
+          </Route>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
+      </Router>
     </ProvideAuth>
   )
 }

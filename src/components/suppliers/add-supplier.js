@@ -57,7 +57,6 @@ const schema = {
   },
 }
 
-
 const Addsupplier = (props) => {
   return <Form schema={schema} onSubmit={props.handleSave} />
 }

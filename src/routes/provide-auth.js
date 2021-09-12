@@ -1,14 +1,10 @@
 import React from 'react'
-import useProvideAuth from './use-provide-auth';
-import { authContext } from './auth-context';
+import useProvideAuth from './use-provide-auth'
+import { authContext } from './auth-context'
 
-export const ProvideAuth = ({children}) => {
-    const auth = useProvideAuth();
-    return (
-        <authContext.Provider value={auth}>
-            {children}
-        </authContext.Provider>
-    )
+export const ProvideAuth = ({ children }) => {
+  const auth = useProvideAuth()
+  return <authContext.Provider value={auth}>{children}</authContext.Provider>
 }
 
-export default ProvideAuth;
+export default ProvideAuth
