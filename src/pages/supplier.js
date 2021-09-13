@@ -3,7 +3,7 @@ import { Container, Col, Row, Pagination, Form, Button } from 'react-bootstrap'
 import SupplierTable from '../components/supplier-table'
 import SupplierModal from '../components/supplier-modal'
 import AddSupplier from '../components/suppliers/add-supplier'
-import { supplier, addSupplier, editSupplier } from '../api/supplier'
+import { supplier, addSupplier } from '../api/supplier'
 
 const Supplier = () => {
   const [show, setShow] = useState(false)
