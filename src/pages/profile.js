@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Row, Button } from 'react-bootstrap'
 import Form from '@rjsf/bootstrap-4'
+import profile from '../api/profile';
 
 const schema = {
   type: 'object',
@@ -44,6 +45,14 @@ const schema = {
 }
 
 const Profile = () => {
+
+  const [dataProfile, setDataProfile] = useState({})
+  useEffect(() => {
+    profile().then( (res) => {
+      setDataProfile(res.data)
+    }).catch(err => console.log(err))
+  },[])
+
   return (
     <div className="profile">
       <Container>

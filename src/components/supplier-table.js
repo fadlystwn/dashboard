@@ -1,7 +1,7 @@
 import React from 'react'
-import { Table } from 'react-bootstrap'
+import { Table, Button } from 'react-bootstrap'
 
-const SupplierTable = ({ suppliers }) => {
+const SupplierTable = ({ suppliers, handleDelete, handleEdit }) => {
   return (
     <Table striped bordered hover>
       <thead>
@@ -23,7 +23,11 @@ const SupplierTable = ({ suppliers }) => {
                 <td>{item.name}</td>
                 <td>{item.contact_person}</td>
                 <td>{item.contact_number}</td>
-                <td>Edit, Delete</td>
+                <td>
+                  <span href="#" className="text-info" onClick={handleEdit}> edit</span>
+                  <span> | </span>
+                  <a href="#" className="text-danger" onClick={e => handleDelete(e, item.guid)}> delete </a>
+                </td>
               </tr>
             )
           })}

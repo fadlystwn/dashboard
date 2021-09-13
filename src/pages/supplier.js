@@ -7,6 +7,7 @@ import { supplier, addSupplier, editSupplier } from '../api/supplier'
 
 const Supplier = () => {
   const [show, setShow] = useState(false)
+  const [isShowDelete, setIsShowDelete] = useState(false)
   const [suppliers, setSuppliers] = useState([])
 
   useEffect(() => {
@@ -22,7 +23,18 @@ const Supplier = () => {
 
   const page = suppliers && suppliers.meta
 
-  console.log(page)
+  const handleSave = ({formData}) => {
+    console.log(formData)
+
+    addSupplier(formData).then( res =>  {
+      console.log(res)
+    }).catch(err => console.log(err))
+  }
+  
+  const handleDelete = (e, id) => {
+    setIsShowDelete(true)
+    console.log(e, id)
+  }
 
   return (
     <Container>
@@ -36,11 +48,25 @@ const Supplier = () => {
       </Row>
       <Row>
         <Col md={12}>
-          <SupplierModal show={show} handleClose={handleClose}>
-            <AddSupplier />
+          <SupplierModal
+            title="Add New Supplier"
+            show={show} 
+            handleClose={handleClose}
+            >
+            <AddSupplier handleSave={handleSave}/>
           </SupplierModal>
 
-          <SupplierTable suppliers={suppliers} />
+          <SupplierTable 
+            suppliers={suppliers} 
+            handleDelete={handleDelete}
+          />
+          <SupplierModal
+            title="Delete Supplier"
+            show={isShowDelete}
+            handleClose={handleClose}
+            >
+              Are you sure want to delete "item name"?
+          </SupplierModal>
         </Col>
       </Row>
 
